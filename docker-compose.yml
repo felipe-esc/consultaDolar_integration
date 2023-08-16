@@ -1,0 +1,21 @@
+version: '1'
+
+services:
+  db:
+    image: postgres:14.1
+    environment:
+      POSTGRES_USER: "consultaDolar" 
+      POSTGRES_PASSWORD: "consultaDolar123" 
+      POSTGRES_DB: "consulta_dolar"
+    ports:
+      - "5433:5432"
+  backend:
+    build:
+     context: ../consultaDolar\ -\ BackEnd/src/main/docker/
+     dockerfile: Dockerfile.jvm
+    ports:
+      - "80:80"
+  frontend:
+    build: ../consultaDolar\ -\ FrontEnd/consulta-dolar/
+    ports:
+      - "4200:4200"
